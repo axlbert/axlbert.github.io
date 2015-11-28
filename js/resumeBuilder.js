@@ -11,38 +11,32 @@ var bio = {
         "location": "Dusseldorf,Germany"
     },
     "welcomeMessage": "Howdy everyone! This is my FEND P2 Online Resume with real fake information. Enjoy!",
-    "biopic": "http://lorempixel.com/100/100/animals/7",
+    "biopic": "http://lorempixel.com/960/300/animals/7",
     "skills": ["CSS", "HTML", "JS", "Bootstrap"]
 };
 
 bio.display = function() {
     var formattedHeaderRole = HTMLheaderRole.replace("%data%", bio.role);
-    $("#header").prepend(formattedHeaderRole);
     var formattedHeaderName = HTMLheaderName.replace("%data%", bio.name);
-    $("#header").prepend(formattedHeaderName);
-    var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-    $("#topContacts").append(formattedMobile);
-    var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-    $("#topContacts").append(formattedEmail);
-    var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-    $("#topContacts").append(formattedTwitter);
-    var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-    $("#topContacts").append(formattedGithub);
-    var formattedBlog = HTMLblog.replace("%data%", bio.contacts.blog);
-    $("#topContacts").append(formattedBlog);
-    var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-    $("#topContacts").append(formattedLocation);
-    var formattedWelMes = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-    $("#header").append(formattedWelMes);
     var formattedPic = HTMLbioPic.replace("%data%", bio.biopic);
-    $("#header").append(formattedPic);
-    $("#header").append(HTMLskillsStart);
-    for (var element in bio.skills) {
-        if (bio.skills.hasOwnProperty(element)) {
-            var formattedSkills = HTMLskills.replace("%data%", bio.skills[element]);
-            $("#header").append(formattedSkills);
+    $("#header").prepend(formattedHeaderRole).prepend(formattedHeaderName).append(formattedPic);
+    var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+    var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+    var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+    var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+    var formattedBlog = HTMLblog.replace("%data%", bio.contacts.blog);
+    var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+    $("#topContacts").append(formattedEmail).append(formattedMobile).append(formattedTwitter).append(formattedGithub).append(formattedBlog).append(formattedLocation);
+    var formattedWelMes = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+    $("#float-box").append(formattedWelMes).append(HTMLskillsStart);
+    var len = bio.skills.length;
+    for (var i = 0; i < len; i++) {
+        if (bio.skills.hasOwnProperty(i)) {
+            var formattedSkills = HTMLskills.replace("%data%", bio.skills[i]);
+            $("#float-box").append(formattedSkills);
         }
     }
+    $('#footerContacts').append(formattedTwitter).append(formattedMobile).append(formattedEmail);
 };
 
 bio.display();
@@ -53,68 +47,65 @@ var education = {
         "name": "FHL",
         "location": "Luebeck, Germany",
         "degree": "Dipl.Wirt-Ing. FH",
-        "majors": "Industrial Engineering",
-        "dates": "2005-2009",
+        "majors": {
+            "major1": "Industrial Engineering"
+        },
+        "dates": 2009,
         "url": "http://www.fh-luebeck.de"
     }, {
         "name": "MSOE",
         "location": "Milwaukee, WI",
         "degree": "B.Sc.",
-        "majors": "Industrial Engineering",
-        "dates": "2008-2009",
+        "majors": {
+            "major1": "Industrial Engineering"
+        },
+        "dates": 2009,
         "url": "http://www.msoe.edu"
     }, {
         "name": "Cambridge University",
         "location": "Cambridge, UK",
         "degree": "M.phil.",
-        "majors": "Manufacturing",
-        "dates": "2010-2011",
+        "majors": {
+            "major1": "Manufacturing"
+        },
+        "dates": 2011,
         "url": "http://www.cam.ac.uk"
     }, ],
     "onlineCourses": [{
         "title": "Front-End Developer",
         "school": "Udacity",
-        "date": "2015-2016",
+        "date": 2016,
         "url": "http://www.udacity.com"
     }, ]
 };
 
 education.display = function() {
     $("#education").append(HTMLschoolStart);
-    for (var place in education.school) {
+    var len = education.school.length;
+    for (var place = 0; place < len; place++) {
         if (education.school.hasOwnProperty(place)) {
             var formatteduni = HTMLschoolName.replace("%data%", education.school[place].name);
             var formattedclass = HTMLschoolDates.replace("%data%", education.school[place].dates);
-            var formattedmajor = HTMLschoolMajor.replace("%data%", education.school[place].majors);
+            var formattedmajor = HTMLschoolMajor.replace("%data%", education.school[place].majors.major1);
             var formatteddegree = HTMLschoolDegree.replace("%data%", education.school[place].degree);
             var formattedlocation = HTMLschoolLocation.replace("%data%", education.school[place].location);
-            $(".education-entry").append(formatteduni);
-            $(".education-entry").append(formattedclass);
-            $(".education-entry").append(formattedmajor);
-            $(".education-entry").append(formatteddegree);
-            $(".education-entry").append(formattedlocation);
+            $(".education-entry").append(formatteduni).append(formattedclass).append(formattedmajor).append(formatteddegree).append(formattedlocation);
         }
     }
-};
-
-education.display2 = function() {
-    for (var place in education.onlineCourses) {
-        if (education.onlineCourses.hasOwnProperty(place)) {
-            var formattedtitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[place].title);
-            var formattedschool = HTMLonlineSchool.replace("%data%", education.onlineCourses[place].school);
-            var formatteddate = HTMLonlineDates.replace("%data%", education.onlineCourses[place].date);
-            var formattedurl = HTMLonlineURL.replace("%data%", education.onlineCourses[place].url);
-            $(".education-entry").append(HTMLonlineClasses);
-            $(".education-entry").append(formattedtitle);
-            $(".education-entry").append(formattedschool);
-            $(".education-entry").append(formatteddate);
-            $(".education-entry").append(formattedurl);
+    var len2 = education.onlineCourses.length;
+    for (var mooc = 0; mooc < len2; mooc++) {
+        if (education.onlineCourses.hasOwnProperty(mooc)) {
+            var formattedtitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[mooc].title);
+            var formattedschool = HTMLonlineSchool.replace("%data%", education.onlineCourses[mooc].school);
+            var formatteddate = HTMLonlineDates.replace("%data%", education.onlineCourses[mooc].date);
+            var formattedurl = HTMLonlineURL.replace("%data%", education.onlineCourses[mooc].url);
+            $(".education-entry").append(HTMLonlineClasses).append(formattedtitle).append(formattedschool).append(formatteddate).append(formattedurl);
         }
     }
 };
 
 education.display();
-education.display2();
+
 
 var work = {
     "jobs": [{
@@ -140,7 +131,8 @@ var work = {
 
 work.display = function() {
     $("#workExperience").append(HTMLworkStart);
-    for (var job in work.jobs) {
+    var len = work.jobs.length;
+    for (var job = 0; job < len; job++) {
         if (work.jobs.hasOwnProperty(job)) {
             var formattedemployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
             var formattedworktitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
@@ -177,21 +169,19 @@ var projects = {
 
 
 projects.display = function() {
-    for (var project in projects.projects) {
+    var len = projects.projects.length;
+    for (var project = 0; project < len; project++) {
         if (projects.projects.hasOwnProperty(project)) {
             $("#projects").append(HTMLprojectStart);
 
             var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
-            $(".project-entry:last").append(formattedTitle);
-
             var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
-            $(".project-entry:last").append(formattedDates);
-
             var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
-            $(".project-entry:last").append(formattedDescription);
+            $(".project-entry:last").append(formattedTitle).append(formattedDates).append(formattedDescription);
 
             if (projects.projects[project].images.length > 0) {
-                for (var image in projects.projects[project].images) {
+                var len2 = projects.projects[project].images.length;
+                for (var image = 0; image < len2; image++) {
                     if (projects.projects.hasOwnProperty(image)) {
                         var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
                         $(".project-entry:last").append(formattedImage);
@@ -211,9 +201,3 @@ $(document).click(function(loc) {
 });
 
 $("#mapDiv").append(googleMap);
-var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-$('#footerContacts').append(formattedTwitter);
-$('#footerContacts').append(formattedEmail);
-$('#footerContacts').append(formattedMobile);

@@ -1,6 +1,10 @@
 @media screen and (max-width: 420px) {
   #topContacts {
     display: none;
+  }
+
+  #float-box {
+    display: none;
   };
 }
 
@@ -26,12 +30,8 @@ h6 {
   font-family: "Roboto", sans-serif;
 }
 
-.clear-fix {
-  overflow: auto;
-}
-
 .nav-void {
-  margin: 63px;
+  margin: 70px;
 }
 
 .education-entry,
@@ -40,11 +40,27 @@ h6 {
   padding: 0 5%;
 }
 
+#skills-h3 {
+  padding: 0;
+}
+
+#float-box {
+  position: absolute;
+  margin-top: 7.5%;
+  padding: 0 20px;
+  max-width: 100%;
+  width: 920px;
+  background: rgb(0, 0, 0);
+ /* fallback color */
+  background: rgba(0, 0, 0, 0.5);
+}
+
 h1 {
   font-size: 40px;
   color: #e2e2e1;
   line-height: 48px;
   display: inline;
+  margin: 0 10px;
 }
 
 h2 {
@@ -174,10 +190,6 @@ a {
   padding: 10px;
 }
 
-.center-content {
-  padding: 2.5% 5%;
-}
-
 ul {
   list-style-type: none;
 }
@@ -187,10 +199,8 @@ li {
 }
 
 .biopic {
-  float: left;
-  padding: 10px;
-  width: 200px;
-  display: none;
+  padding: 0;
+  max-width: 100%;
 }
 
 img {
@@ -213,19 +223,9 @@ span {
   };
 }
 
-@media only screen and (max-width:900px) {
-  .biopic {
-    width: 175px;
-  };
-}
-
 @media only screen and (max-width: 750px) {
   #lets-connect {
     margin-top: 10%;
-  }
-
-  .biopic {
-    width: 150px;
   }
 
   .welcome-message {
@@ -253,6 +253,10 @@ span {
 }
 
 .foot-contact {
-  padding: 0px 10px;
+  padding: 0 10px;
   display: flex;
+}
+
+.flex-item {
+  padding: 0 10px;
 }
